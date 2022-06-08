@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
+  <script src="/static/ajax.js"></script>
+  <link rel="stylesheet" href="/static/style.css">
+<script src="/static/player.js"></script>
+  <script src="/static/room.js"></script>
+  <script src="/static/toast.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <title>Fork</title>
+  <style>
+    .dropdown-menu {
+      min-width: max-content !important;
+    }
+    ::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+  </style>
+</head>
+<body style="background-color: rgb(68, 68, 68); color: aliceblue;" >
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'index' %}">Fork</a>
+      <form class="d-flex mb-0" method="post" id="form_id">
+        <div class="input-group">
+            <input class="form-control me-1" type="search" placeholder="Search" name="search" aria-label="Search" autocomplete="off" style="border-radius: 0.25rem;" id="search_input">
+<!--             <a><span class="input-group-text btn btn-outline-success" id="basic-addon2">Search</span></a> -->
+        </div>
+      </form>
+
+<button type="button" class="btn btn-primary me-4" data-bs-toggle="modal" data-bs-target="#exampleModal" id="modal_btn">
+    Join Room
+  </button>
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Join Room</h5>
+          <button type="button" class="btn-close" id="modal-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="room_form">
+          <div class="modal-body container-fluid text-center">
+              <input type="text" class="text-dark" name="user_name" id="user_name" placeholder="Enter user name" required>
+              <input type="text" class="text-dark" name="room_name" id="room_name" placeholder="Enter room name" minlength="4" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Join Room</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+    <div class="btn-group d-none me-4" id="room">
+      <a class="nav-link dropdown-toggle text-reset" href="" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark w-50">
+        <li><a class="dropdown-item d-none" data-bs-toggle="modal" data-bs-target="#exampleModal" id="username"></a></li>
+        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">new room</a></li>
+        <li><a class="dropdown-item" href="#" id="leave_room">Leave room</a></li>
+      </ul>
+    </div>
+  </div>
+  </nav>
+  <div class="container" id="root">
+  </div>
+<!--   <div class="container"> -->
+    {% block content %}
+    {% endblock %}
+<!--   </div> -->
+
+
+<div class="position-absolute top-0 start-0 p-2 mt-5" style="z-index: 11">
+  <div id="loadToast" class="toast align-items-center bg-dark" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+    <div class="d-flex">
+      <div class="toast-body">
+        <div class="spinner-border text-light" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- <div aria-live="polite" aria-atomic="true" class="position-relative"> -->
+  <div class="toast-container position-absolute top-0 end-0 p-3 mt-5">
+
+    <div class="p-3" style="z-index: 11">
+      <div id="liveToast" class="toast text-white bg-primary" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body" id="toast-body">
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="p-3" style="z-index: 11">
+      <div id="alertToast" class="toast text-white bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body" id="alert-toast-body">
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+<!-- </div> -->
+</body>
+</html>

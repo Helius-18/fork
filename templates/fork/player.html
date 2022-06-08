@@ -1,0 +1,48 @@
+{% extends 'fork/new_index.html' %}
+{% block content %}
+<div id="app-cover" class="d-none">
+<!--         <div id="bg-artwork" style="background-image: url('{{thumbnail}}');"></div> -->
+<!--         <div id="bg-layer"></div> -->
+        <div id="player">
+          <div id="player-track" class="bg-dark" >
+            <div id="album-name"></div>
+            <div id="track-name"></div>
+            <div id="track-time">
+              <div id="current-time"></div>
+              <div id="track-length"></div>
+            </div>
+            <div id="s-area">
+              <div id="ins-time"></div>
+              <div id="s-hover"></div>
+              <div id="seek-bar"></div>
+            </div>
+          </div>
+          <div id="player-content" class="bg-dark">
+            <div id="album-art">
+              <img src="" class="active" id="_1">
+              <div id="buffer-box">Buffering ...</div>
+            </div>
+            <div id="player-controls">
+              <div class="control">
+                <!-- <div class="button" id="play-previous">
+                  <i class="fas fa-backward"></i>
+                </div> -->
+              </div>
+              <div class="control">
+                <div class="button bg-dark" id="play-pause-button">
+                  <i class="fas fa-play"></i>
+                </div>
+              </div>
+              <div class="control">
+                <!-- <div class="button" id="play-next">
+                  <i class="fas fa-forward"></i>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<audio id="hiddenaudio">
+  <source src="" type="audio/webm" id="audio_source">
+</audio>
+{% endblock content %}
